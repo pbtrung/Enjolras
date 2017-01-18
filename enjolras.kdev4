@@ -1,0 +1,4 @@
+[Project]
+Name=enjolras
+Manager=KDevCMakeManager
+VersionControl=kdevgit
