@@ -36,10 +36,12 @@
 using namespace Eigen;
 
 static void test_eigen_case_a();
+static void test_eigen_case_b();
 
 void test_eigen()
 {
     test_eigen_case_a();
+    test_eigen_case_b();
 }
 
 static void test_eigen_case_a()
@@ -56,5 +58,22 @@ static void test_eigen_case_a()
     v(0) = 4;
     v(1) = v(0) - 1;
     sput_fail_if(v(0) != 4, "Case a: Test vector element value");
-    sput_fail_if(v(1) != 3, "Case a: Test vector element operation");    
+    sput_fail_if(v(1) != 3, "Case a: Test vector element operation");
+}
+
+static void test_eigen_case_b()
+{
+    MatrixXd m(2,2);
+    m(0,0) = 3;
+    m(1,0) = 2.5;
+    m(0,1) = -1;
+    m(1,1) = 1.5;
+    
+    VectorXd v(2);
+    v(0) = 4;
+    v(1) = 3;
+    
+    VectorXd w(2);
+    w = m * v;
+    sput_fail_if(w(0) != 9, "Case b: Test matrix vector multiplication");
 }
