@@ -40,8 +40,9 @@ class CmdlArgs
 {
 private:
     cxxopts::Options options;
-    void print_help(cxxopts::Options options);
-    void print_version();
+    void print_help(cxxopts::Options options, char *argv[]);
+    void print_version(cxxopts::Options options, char *argv[]);
+    void print_suggestion(char *program_name);
     void validate_input(cxxopts::Options options, char *argv[]);
     void validate_output(cxxopts::Options options, char *argv[]);
     void validate_log(cxxopts::Options options, char *argv[]);
