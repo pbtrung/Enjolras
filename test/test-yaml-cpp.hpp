@@ -55,7 +55,7 @@ static void test_yaml_cpp_case_a()
     sput_fail_if(test_yaml["total"].as<double>() != 4443.52, "Case a: Test double read from YAML file");
     std::string tmp("Chris");
     sput_fail_if(tmp.compare(test_yaml["bill-to"]["given"].as<std::string>()) != 0, 
-                 "Case b: Test string read from YAML file");
+                 "Case a: Test string read from YAML file");
 }
 
 static void test_yaml_cpp_case_b()
