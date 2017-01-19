@@ -75,5 +75,15 @@ static void test_yaml_cpp_case_b()
 static void test_yaml_cpp_case_c()
 {
     YAML::Node test_yaml = YAML::LoadFile("../../test/test-yaml-cpp.yml");
-    YAML::Node products = test_yaml["product"];
+    YAML::Node block = test_yaml["block"];
+    YAML::Node nodes = block["nodes"];
+    
+    sput_fail_if(block["numx"].as<int>() != 40,
+                 "Case c: Test int read from YAML file");
+    sput_fail_if(nodes[0][0].as<int>() != 1,
+                 "Case c: Test inline sequence read from YAML file, node ID = 1");
+    sput_fail_if(nodes[1][0].as<int>() != 2,
+                 "Case c: Test inline sequence read from YAML file, node ID = 2");
+    sput_fail_if(nodes[1][3].as<double>() != 7.21,
+                 "Case c: Test double read from YAML sequence");
 }
