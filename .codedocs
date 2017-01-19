@@ -1,0 +1,9 @@
+# CodeDocs.xyz Configuration File
+
+# One or more directories and files to exclude from documentation generation.
+# Use relative paths with respect to the repository root directory.
+EXCLUDE = include/Eigen include/yaml-cpp src/yaml-cpp
+
+# Include the Doxygen configuration from another file.
+
+DOXYFILE = doxygen.cfg
