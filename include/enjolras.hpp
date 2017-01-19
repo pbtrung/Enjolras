@@ -32,8 +32,12 @@
 #define __ENJOLRAS_HPP__
 
 #include "utils/cmdl-args.hpp"
+#include "utils/file-checker.hpp"
 
 void enjolras_get_filenames(int argc, char *argv[], std::string input_filename, 
                             std::string output_filename, std::string log_filename);
+
+void enjolras_init(char *program_name, std::string input_filename, 
+                   std::string output_filename, std::string log_filename);
 
 #endif //__ENJOLRAS_HPP__

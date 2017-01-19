@@ -30,6 +30,7 @@
 
 #include "test-cmdl-args.hpp"
 #include "test-eigen.hpp"
+#include "test-file-checker.hpp"
 
 int main(int argc, char **argv)
 {
@@ -40,6 +41,9 @@ int main(int argc, char **argv)
     
     sput_enter_suite("test_eigen()");
     sput_run_test(test_eigen);
+    
+    sput_enter_suite("test_file_checker()");
+    sput_run_test(test_file_checker);
     
     sput_finish_testing();
     

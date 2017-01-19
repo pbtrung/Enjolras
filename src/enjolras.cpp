@@ -40,3 +40,8 @@ void enjolras_get_filenames(int argc, char *argv[], std::string input_filename,
     output_filename = cmdl_args.get_output_filename();
     log_filename = cmdl_args.get_log_filename();
 }
+
+void enjolras_init(char *program_name, std::string input_filename, 
+                   std::string output_filename, std::string log_filename)
+{
+}
