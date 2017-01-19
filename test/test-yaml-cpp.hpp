@@ -28,28 +28,26 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.               * 
  **************************************************************************************/
 
-#include "test-cmdl-args.hpp"
-#include "test-eigen.hpp"
-#include "test-file-checker.hpp"
-#include "test-yaml-cpp.hpp"
+#include <iostream>
 
-int main(int argc, char **argv)
+#include "sput.h"
+#include "yaml-cpp/node/node.h"
+#include "yaml-cpp/node/impl.h"
+#include "yaml-cpp/node/convert.h"
+#include "yaml-cpp/node/iterator.h"
+#include "yaml-cpp/node/detail/impl.h"
+#include "yaml-cpp/node/parse.h"
+
+static void test_yaml_cpp_case_a();
+
+void test_yaml_cpp()
 {
-    sput_start_testing();
+    test_yaml_cpp_case_a();
+}
+
+static void test_yaml_cpp_case_a()
+{
+    YAML::Node test_yaml = YAML::LoadFile("test-yaml-cpp.yml");
     
-    sput_enter_suite("test_cmdl_args()");
-    sput_run_test(test_cmdl_args);
-    
-    sput_enter_suite("test_eigen()");
-    sput_run_test(test_eigen);
-    
-    sput_enter_suite("test_file_checker()");
-    sput_run_test(test_file_checker);
-    
-    sput_enter_suite("test_yaml_cpp()");
-    sput_run_test(test_yaml_cpp);
-    
-    sput_finish_testing();
-    
-    return sput_get_return_value();    
+    sput_fail_if(test_yaml["invoice"].as<int>() != 34843, "Case a: Test int read from YAML file");
 }
