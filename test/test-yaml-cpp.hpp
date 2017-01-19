@@ -29,20 +29,22 @@
  **************************************************************************************/
 
 #include <iostream>
+#include <string>
 
 #include "sput.h"
 #include "yaml-cpp/node/node.h"
-#include "yaml-cpp/node/impl.h"
-#include "yaml-cpp/node/convert.h"
 #include "yaml-cpp/node/iterator.h"
+#include "yaml-cpp/node/convert.h"
 #include "yaml-cpp/node/detail/impl.h"
 #include "yaml-cpp/node/parse.h"
 
 static void test_yaml_cpp_case_a();
+static void test_yaml_cpp_case_b();
 
 void test_yaml_cpp()
 {
     test_yaml_cpp_case_a();
+    test_yaml_cpp_case_b();
 }
 
 static void test_yaml_cpp_case_a()
@@ -50,4 +52,20 @@ static void test_yaml_cpp_case_a()
     YAML::Node test_yaml = YAML::LoadFile("test-yaml-cpp.yml");
     
     sput_fail_if(test_yaml["invoice"].as<int>() != 34843, "Case a: Test int read from YAML file");
+    sput_fail_if(test_yaml["total"].as<double>() != 4443.52, "Case a: Test double read from YAML file");
+    std::string tmp("Chris");
+    sput_fail_if(tmp.compare(test_yaml["bill-to"]["given"].as<std::string>()) != 0, 
+                 "Case b: Test string read from YAML file");
+}
+
+static void test_yaml_cpp_case_b()
+{
+    YAML::Node test_yaml = YAML::LoadFile("test-yaml-cpp.yml");
+    YAML::Node products = test_yaml["product"];
+    
+    std::string tmp("Basketball");
+    sput_fail_if(tmp.compare(products[0]["description"].as<std::string>()) != 0,
+                 "Case b: Test string read from YAML sequence");
+    sput_fail_if(products[1]["price"].as<double>() != 2392.00,
+                 "Case b: Test double read from YAML sequence");
 }
