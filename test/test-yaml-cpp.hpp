@@ -40,16 +40,18 @@
 
 static void test_yaml_cpp_case_a();
 static void test_yaml_cpp_case_b();
+static void test_yaml_cpp_case_c();
 
 void test_yaml_cpp()
 {
     test_yaml_cpp_case_a();
     test_yaml_cpp_case_b();
+    test_yaml_cpp_case_c();
 }
 
 static void test_yaml_cpp_case_a()
 {
-    YAML::Node test_yaml = YAML::LoadFile("test-yaml-cpp.yml");
+    YAML::Node test_yaml = YAML::LoadFile("../../test/test-yaml-cpp.yml");
     
     sput_fail_if(test_yaml["invoice"].as<int>() != 34843, "Case a: Test int read from YAML file");
     sput_fail_if(test_yaml["total"].as<double>() != 4443.52, "Case a: Test double read from YAML file");
@@ -60,7 +62,7 @@ static void test_yaml_cpp_case_a()
 
 static void test_yaml_cpp_case_b()
 {
-    YAML::Node test_yaml = YAML::LoadFile("test-yaml-cpp.yml");
+    YAML::Node test_yaml = YAML::LoadFile("../../test/test-yaml-cpp.yml");
     YAML::Node products = test_yaml["product"];
     
     std::string tmp("Basketball");
@@ -68,4 +70,10 @@ static void test_yaml_cpp_case_b()
                  "Case b: Test string read from YAML sequence");
     sput_fail_if(products[1]["price"].as<double>() != 2392.00,
                  "Case b: Test double read from YAML sequence");
+}
+
+static void test_yaml_cpp_case_c()
+{
+    YAML::Node test_yaml = YAML::LoadFile("../../test/test-yaml-cpp.yml");
+    YAML::Node products = test_yaml["product"];
 }
