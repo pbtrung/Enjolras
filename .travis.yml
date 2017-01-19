@@ -67,8 +67,8 @@ script:
   - mkdir release
   - export CXX="$CXX_COMPILER"
   - export CC="$C_COMPILER"
-  - cd debug && cmake -DCMAKE_BUILD_TYPE=Debug ../.. && make
-  - cd ../release && cmake -DCMAKE_BUILD_TYPE=Release ../.. && make
+  - cd debug && cmake -DCMAKE_BUILD_TYPE=Debug ../.. && make -j4
+  - cd ../release && cmake -DCMAKE_BUILD_TYPE=Release ../.. && make -j4
   - cd ../../bin/release
   - ./enjolras --help
   - ./test-enjolras

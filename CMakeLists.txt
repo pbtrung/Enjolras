@@ -28,13 +28,15 @@ endif()
 # Common
 file(GLOB_RECURSE ENJOLRAS_COMMON_SRC "${SRC_PATH}/utils/*.cpp")
 set(ENJOLRAS_SRC ${ENJOLRAS_COMMON_SRC})
+file(GLOB_RECURSE ENJOLRAS_COMMON_SRC "${SRC_PATH}/yaml-cpp/*.cpp")
+list(APPEND ENJOLRAS_SRC ${ENJOLRAS_COMMON_SRC})
 include_directories(${INC_PATH})
 
 # Solid mechanics module
 option(USE_SM "Enable solid mechanics module" ON)
 if(USE_SM)
-    file(GLOB_RECURSE TMP "${SRC_PATH}/sm/*.cpp")
-    list(APPEND ENJOLRAS_SRC ${TMP})
+    file(GLOB_RECURSE ENJOLRAS_SM_SRC "${SRC_PATH}/sm/*.cpp")
+    list(APPEND ENJOLRAS_SRC ${ENJOLRAS_SM_SRC})
 endif()
 
 # Build library
