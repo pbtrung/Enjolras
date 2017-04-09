@@ -38,6 +38,20 @@ matrix:
             - libopenblas-dev
             - liblapacke-dev
     - os: linux
+      compiler: clang++-4.0
+      env: CXX_COMPILER="clang++-4.0" C_COMPILER="clang-4.0"
+      addons:
+        apt:
+          sources:
+            - sourceline: "deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-4.0 main"
+              key_url:    "http://apt.llvm.org/llvm-snapshot.gpg.key"
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-6
+            - clang-4.0
+            - libopenblas-dev
+            - liblapacke-dev
+    - os: linux
       compiler: g++-5
       env: CXX_COMPILER="g++-5" C_COMPILER="gcc-5"
       addons:
